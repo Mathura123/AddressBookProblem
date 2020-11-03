@@ -71,3 +71,8 @@ select * from contact_type
 --joins address_book and contact_type
 select * from address_book ad inner join contact_type type
 on ((ad.FirstName = type.FirstName) and (ad.LastName = type.LastName));
+
+--retieves count by type
+select COUNT(type.Type), type.Type from address_book ad inner join Contact_Type type
+on ((ad.FirstName = type.FirstName) and (ad.LastName = type.LastName))
+group by Type;
