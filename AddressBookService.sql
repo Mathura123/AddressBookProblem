@@ -52,3 +52,22 @@ group by State, City;
 select * from address_book
 where City = 'Allahabad'
 order by FirstName asc;
+
+create table contact_type
+(
+FirstName varchar(50) not null,
+LastName varchar(50) not null,
+Type varchar(15) not null
+);
+
+insert into contact_type values
+('Rakesh','Mehta','Friends'),
+('Rahul','Kumar','Family'),
+('Terrisa','John','Family'),
+('Krishna','Gotthi','Profession'),
+('Rakhi','Sharma','Friends');
+--retrives all datas in contact_type
+select * from contact_type
+--joins address_book and contact_type
+select * from address_book ad inner join contact_type type
+on ((ad.FirstName = type.FirstName) and (ad.LastName = type.LastName));
