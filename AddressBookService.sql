@@ -43,3 +43,7 @@ select* from address_book;
 --retrives person belonging to city 'Allahabad' or state 'Uttar Pradesh'
 select * from address_book
 where City = 'Allahabad' or State = 'Uttar Pradesh';
+
+--retrives count by city and by state
+select State, city, count(State) as 'Count by State', count(City) as 'Count by City' from address_book
+group by State, City;
