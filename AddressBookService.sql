@@ -33,3 +33,9 @@ update address_book
 set Address = 'J90/54 Allahabad' where FirstName = 'Rahul';
 --retrives all datas in address_book
 select* from address_book;
+
+--deletes contact of person named Rekhi
+delete address_book
+where FirstName = 'Rekhi';
+--retrives all datas in address_book
+select* from address_book;
