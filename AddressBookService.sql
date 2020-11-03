@@ -39,3 +39,7 @@ delete address_book
 where FirstName = 'Rekhi';
 --retrives all datas in address_book
 select* from address_book;
+
+--retrives person belonging to city 'Allahabad' or state 'Uttar Pradesh'
+select * from address_book
+where City = 'Allahabad' or State = 'Uttar Pradesh';
