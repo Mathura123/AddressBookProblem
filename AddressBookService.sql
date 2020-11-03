@@ -27,3 +27,9 @@ insert into address_book values
 ('Rekhi','Sharma','Street 56','Ajmer','Rajasthan','123456','8558585851','rekha@gmail.com');
 --retrives all datas in address_book
 select* from address_book;
+
+--edits address of Rahul
+update address_book
+set Address = 'J90/54 Allahabad' where FirstName = 'Rahul';
+--retrives all datas in address_book
+select* from address_book;
