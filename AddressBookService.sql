@@ -123,3 +123,25 @@ insert into type values
 --retrives all values
 select * from people_contact;
 select * from type;
+
+--retrives person belonging to a city or state
+select pc.FirstName,pc.LastName,Address,City,State,Zipcode,PhoneNumber,Email,type
+from people_contact pc 
+inner join type t on t.FirstName = pc.FirstName and t.LastName=pc.LastName
+where City = 'Allahabad' or State = 'Uttar Pradesh';
+
+--retrives count by city and by state
+select State, city, count(State) as 'Count by State', count(City) as 'Count by City' from people_contact
+group by State, City;
+
+--retrives contacts of person in city 'Allahabad' in ascending order by FirstName
+select pc.FirstName,pc.LastName,Address,City,State,Zipcode,PhoneNumber,Email,type
+from people_contact pc
+inner join type t on t.FirstName = pc.FirstName and t.LastName=pc.LastName
+where City = 'Allahabad'
+order by pc.FirstName,pc.LastName asc;
+
+--retieves count by type
+select Type,COUNT(Type) as 'Count of Type' from people_contact pc inner join type t
+on ((pc.FirstName = t.FirstName) and (pc.LastName = t.LastName))
+group by Type;
