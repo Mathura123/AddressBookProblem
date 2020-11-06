@@ -85,3 +85,41 @@ insert into contact_type values
 ('Rahul','Kumar','Friend');
 select ad.FirstName,ad.LastName,Address,City,State,Zipcode,PhoneNumber,Email,Type from address_book ad inner join contact_type type
 on ((ad.FirstName = type.FirstName) and (ad.LastName = type.LastName));
+
+--creates people contact with conpisite primary key
+create table people_contact
+(
+FirstName varchar(50) not null,
+LastName varchar(50) not null,
+Address varchar(150),
+City varchar(50),
+State varchar(50),
+Zipcode varchar(6),
+PhoneNumber varchar(15) not null,
+Email varchar(30) not null,
+CONSTRAINT PK_FirstLastName PRIMARY KEY CLUSTERED (FirstName,LastName)
+);
+--created table type for contact type. Has a foreign key
+create table type
+(
+FirstName varchar(50) not null ,
+LastName varchar(50) not null,
+Type varchar(15) not null,
+constraint FK_Name foreign key (FirstName,LastName) references people_contact(FirstName,LastName)
+)
+--describes the tables
+select * from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = 'people_contact';
+select * from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = 'type';
+--inserts values in people_contact table 
+insert into people_contact values
+('Rakesh','Mehta','Lane 4','Mumbai','Maharashtra','489856','9999999999','rk123@gmail.com'),
+('Rahul','Kumar','K90/78 Allahabad','Allahabad','Uttar Pradesh','451207','8888888888','rahul777@gmail.com'),
+('Rekhi','Sharma','Street 56','Ajmer','Rajasthan','123456','8558585851','rekha@gmail.com');
+--insert values in type table
+insert into type values
+('Rakesh','Mehta','Friends'),
+('Rahul','Kumar','Family'),
+('Rekhi','Sharma','Friends');
+--retrives all values
+select * from people_contact;
+select * from type;
