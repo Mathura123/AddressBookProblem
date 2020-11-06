@@ -17,6 +17,9 @@ Zipcode varchar(6),
 PhoneNumber varchar(15) not null,
 Email varchar(30) not null
 );
+--creates FirstName and LastName as Composite Primary key 
+ALTER TABLE address_book
+   ADD CONSTRAINT PK_Name PRIMARY KEY CLUSTERED (FirstName,LastName);
 --gives the info about the table named address_book
 select * from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = 'address_book';
 
@@ -51,7 +54,7 @@ group by State, City;
 --retrives contacts of person in city 'Allahabad' in ascending order by FirstName
 select * from address_book
 where City = 'Allahabad'
-order by FirstName asc;
+order by FirstName,LastName asc;
 
 create table contact_type
 (
@@ -69,10 +72,16 @@ insert into contact_type values
 --retrives all datas in contact_type
 select * from contact_type
 --joins address_book and contact_type
-select * from address_book ad inner join contact_type type
+select ad.FirstName,ad.LastName,Address,City,State,Zipcode,PhoneNumber,Email,Type from address_book ad inner join contact_type type
 on ((ad.FirstName = type.FirstName) and (ad.LastName = type.LastName));
 
 --retieves count by type
-select COUNT(type.Type), type.Type from address_book ad inner join Contact_Type type
+select type.Type,COUNT(type.Type) as 'Count of Type' from address_book ad inner join Contact_Type type
 on ((ad.FirstName = type.FirstName) and (ad.LastName = type.LastName))
 group by Type;
+
+--inserts rahul kumar as friend as well. initialy it was inserted as family
+insert into contact_type values
+('Rahul','Kumar','Friend');
+select ad.FirstName,ad.LastName,Address,City,State,Zipcode,PhoneNumber,Email,Type from address_book ad inner join contact_type type
+on ((ad.FirstName = type.FirstName) and (ad.LastName = type.LastName));
